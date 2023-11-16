@@ -3,6 +3,7 @@ import random
 
 import requests
 from fastapi import FastAPI
+from pydantic import BaseModel, ValidationError
 
 app = FastAPI()
 queries = ["Are dogs ","Are puppies "]
@@ -11,6 +12,12 @@ headers = {
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 "
     "Safari/537.36 Edge/18.19582"
 }
+
+
+class AnswersModel(BaseModel):
+    answers: list
+
+
 
 @app.get("/getquery/")
 async def get_query():
@@ -23,5 +30,6 @@ async def query(query: str):
     results = []
     for result in json.loads(response.text)[1]:
         results.append(result)
+    return AnswersModel(answers=results)
 
-    return {"Reponses": f"{results}"}
+
