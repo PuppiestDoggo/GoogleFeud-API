@@ -3,10 +3,10 @@ import random
 
 import requests
 from fastapi import FastAPI
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel
 
 app = FastAPI()
-queries = ["Are dogs ","Are puppies "]
+queries = ["Are dogs ","Are puppies ", "Are humans ", "Are cats ", "Do humans ", "Do robots ", "Is it bad to ", "Is it good to "],
 headers = {
     "User-Agent":
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 "
